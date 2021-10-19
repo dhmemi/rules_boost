@@ -2355,6 +2355,12 @@ boost_library(
 boost_library(
     name = "winapi",
     visibility = ["//visibility:private"],
+    linkopts = select({
+        ":windows_x86_64": [
+            "-DEFAULTLIB:Bcrypt.lib",
+        ],
+        "//conditions:default": [],
+    }),
 )
 
 boost_library(
